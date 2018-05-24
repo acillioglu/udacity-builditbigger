@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class JokeDisplayActivity extends AppCompatActivity {
 
@@ -23,12 +24,13 @@ public class JokeDisplayActivity extends AppCompatActivity {
 
         if (bundle != null) {
 
-
-            txtDisplay.setText(bundle.getString(KEY_BUNDLE));
-
+            if (intent.hasExtra(KEY_BUNDLE)) {
+                txtDisplay.setText(bundle.getString(KEY_BUNDLE));
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.error_message), Toast.LENGTH_SHORT).show();
+            } 
 
         }
-
 
     }
 }
